@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1{
+  text-align: center;
+  text-transform: uppercase;
+}
+
+p{
+  text-align: center;
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.login-container input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.login-container input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+.login-container input[type="text"]::placeholder,
+.login-container input[type="password"]::placeholder {
+  color: #aaa;
+}
+
+.glow-button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .glow-button a{
+    color: white;
+    text-decoration: none;
+  }
+  
+  .glow-button:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    z-index: 0;
+  }
+  
+  .glow-button:hover:before {
+    width: 0;
+    height: 0;
+  }
+  
+  .glow-button span {
+    position: relative;
+    z-index: 1;
+  }
+   
