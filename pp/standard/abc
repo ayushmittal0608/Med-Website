@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="subscription-details">
+      <h2>Subscription Details</h2>
+      <p>Subscription Plan: Premium</p>
+      <p>Duration: 1 year</p>
+      <p>Price: $99.99</p>
+    </div>
+  
+    <div class="receipt" class="reciept">
+      <h2>Subscription Receipt</h2>
+      <p>Order ID: 123456</p>
+      <p>Date: May 5, 2024</p>
+      <p>Total Amount: $99.99</p>
+    </div>
+    <div class="bill">
+      <h2>Subscription Bill</h2>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td>Subscription Plan</td>
+          <td>$99.99</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>$99.99</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  

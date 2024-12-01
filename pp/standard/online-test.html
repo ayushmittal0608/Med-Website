@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Check Test</title>
+  <style>
+    /* Your CSS styles here */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        font-size: 24px;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+      }
+      
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        justify-content: center;
+        padding: 20px;
+      }
+      
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      
+      #timer {
+        float: right;
+      }
+      
+      #score {
+        margin-top: 20px;
+        background-color: #f0f0f0;
+        padding: 10px;
+      }
+      
+      #score-bar {
+        height: 20px;
+        background-color: #4c4faf;
+      }
+      
+      .question-container {
+        display: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        max-width: 600px;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        align-self: center;
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 15px;
+        font-size: 24px;
+      }
+      
+      button {
+        padding: 10px 20px;
+        background-color: #544caf;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin: 10px;
+        font-size: 24px;
+        margin: 0 auto;
+      }
+      
+      button:hover {
+        background-color: #4645a0;
+      }
+      
+      .result-container {
+        margin-top: 20px;
+        background-color: #f0f0f0;
+        padding: 10px;
+        margin: 0 auto;
+      }
+      
+      .result-container h2 {
+        margin-top: 0;
+      }
+      
+
+  </style>
+</head>
+<body>
+  <h1>Health Check Test</h1>
+  <div id="timer">Timer: <span id="time">0:00</span></div>
+  <div id="score">Score: <div id="score-bar"></div></div>
+
+  <div id="question1" class="question-container">
+    <form id="quizForm1">
+      <label>1. Do you smoke?</label><br>
+      <input type="radio" name="smoke" value="yes"> Yes
+      <input type="radio" name="smoke" value="no"> No<br><br>
+      <button type="button" onclick="nextQuestion(1)">Next</button>
+    </form>
+  </div>
+
+  <div id="question2" class="question-container">
+    <form id="quizForm2">
+      <label>2. How many hours of sleep do you get per night?</label><br>
+      <input type="number" name="sleepHours" min="1" max="24"><br><br>
+      <button type="button" onclick="nextQuestion(2)">Next</button>
+    </form>
+  </div>
+
+  <div id="question3" class="question-container">
+    <form id="quizForm3">
+      <label>3. How many days per week do you exercise?</label><br>
+      <input type="number" name="exerciseDays" min="0" max="7"><br><br>
+      <button type="button" onclick="nextQuestion(3)">Next</button>
+    </form>
+  </div>
+
+  <div id="question4" class="question-container">
+    <form id="quizForm4">
+      <label>4. Are you experiencing any of these hair issues?</label><br>
+      <input type="radio" name="hair" value="itchy-scalp"> Itchy flakey Scalp<br>
+      <input type="radio" name="hair" value="fine-hair"> Fine/Thin hair<br>
+      <input type="radio" name="hair" value="hair-loss"> Hair Loss<br>
+      <input type="radio" name="hair" value="dry-hair"> Dry/Damaged Hair<br><br> 
+      <button type="button" onclick="nextQuestion(4)">Next</button>
+    </form>
+  </div>
+
+  <div id="question5" class="question-container">
+    <form id="quizForm5">
+      <label>5. Are you experiencing any of these lips issues?</label><br>
+      <input type="radio" name="lips" value="cracked"> Cracked/Chapped Lips<br>
+      <input type="radio" name="lips" value="pale"> Pale Lips<br>
+      <input type="radio" name="lips" value="swollen"> Swollen Lips<br>
+      <input type="radio" name="lips" value="smooth"> Smooth/Bright Lips<br><br> 
+      <button type="button" onclick="nextQuestion(5)">Next</button>
+    </form>
+  </div>
+
+  <div id="question6" class="question-container">
+    <form id="quizForm6">
+      <label>6. How many litres of water do you consume each day?</label><br>
+      <input type="number" name="water" min="0" max="7"><br><br>
+      <button type="button" onclick="nextQuestion(6)">Next</button>
+    </form>
+  </div>
+
+  <div id="question7" class="question-container">
+    <form id="quizForm7">
+      <label>7. What is your BMI type?</label><br>
+      <input type="radio" name="bmi" value="underweight"> Underweight<br>
+      <input type="radio" name="bmi" value="normal"> Normal<br>
+      <input type="radio" name="bmi" value="overweight"> Overweight<br><br> 
+      <button type="button" onclick="nextQuestion(7)">Next</button>
+    </form>
+  </div>
+
+  <div id="question8" class="question-container">
+    <form id="quizForm8">
+      <label>8. What is your skin condition?</label><br>
+      <input type="radio" name="skin" value="dry-oily"> Dry/Oily<br>
+      <input type="radio" name="skin" value="normal"> Normal<br><br>
+      <button type="button" onclick="nextQuestion(8)">Next</button>
+    </form>
+  </div>
+
+  <div id="question9" class="question-container">
+    <form id="quizForm9">
+      <label>9. Are you suffering from any acne/pimple or dark circles?</label><br>
+      <input type="radio" name="acne" value="yes"> Yes
+      <input type="radio" name="acne" value="no"> No<br><br>
+      <button type="button" onclick="nextQuestion(9)">Next</button>
+    </form>
+  </div>
+
+  <div id="question10" class="question-container">
+    <form id="quizForm10">
+      <label>10. How many miles can you walk each day?</label><br>
+      <input type="number" name="walk" min="0" max="7"><br><br>
+      <button type="button" onclick="calculateHealth()">Submit</button>
+    </form>
+
+  <div id="result"></div>
+  </div>
+
+  <script>
+    let totalQuestions = 10;
+let currentQuestion = 1;
+let score = 0;
+let timer;
+
+function startTimer(duration, display) {
+  let timer = duration, minutes, seconds;
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = minutes + ":" + seconds;
+
+    if (--timer < 0) {
+      timer = duration;
+      // Handle timer finish event here
+      alert('Time Up! Your quiz has been submitted.');
+      calculateHealth();
+    }
+  }, 1000);
+}
+
+function nextQuestion(current) {
+  document.getElementById("question" + current).style.display = "none";
+  if (current < totalQuestions) {
+    current++;
+    document.getElementById("question" + current).style.display = "block";
+  } else {
+    calculateHealth();
+  }
+}
+
+function calculateHealth() {
+  var smoke = document.querySelector('input[name="smoke"]:checked').value;
+  var sleepHours = parseInt(document.querySelector('input[name="sleepHours"]').value);
+  var exerciseDays = parseInt(document.querySelector('input[name="exerciseDays"]').value);
+  var hair = document.querySelector('input[name="hair"]:checked').value;
+  var lips = document.querySelector('input[name="lips"]:checked').value;
+  var water = parseInt(document.querySelector('input[name="water"]').value);
+  var bmi = document.querySelector('input[name="bmi"]:checked').value;
+  var skin = document.querySelector('input[name="skin"]:checked').value;
+  var acne = document.querySelector('input[name="acne"]:checked').value;
+  var walk = parseInt(document.querySelector('input[name="walk"]').value);
+  var result = document.getElementById('result');
+
+  // Health score calculation
+  score = 0;
+  if (smoke === 'no') {
+    score += 10;
+  }
+  if (sleepHours >= 7 && sleepHours <= 9) {
+    score += 10;
+  }
+  if (exerciseDays >= 3) {
+    score += 10;
+  }
+  if(hair === 'fine-hair'){
+    score+=10;
+  }
+  if(hair=== 'itchy-scalp' || hair=== 'dry-hair'){
+    score+=5;
+  }
+  if(lips==='smooth'){
+    score+=10;
+  }
+  if(lips==='pale' || lips==='cracked'){
+    score+=5;               
+  }
+  if(water>=2){
+    score+=10;
+  }
+  if(water>=1 && water<2){
+    score+=5;
+  }
+  if(bmi==='normal'){
+    score+=10;
+  }
+  if(skin==='normal'){
+    score+=10;
+  }
+  if(acne==='no'){
+    score+=10;
+  }
+  if(walk>=2){
+    score+=10;
+  }
+
+  // Update score bar
+  updateScoreBar(score);
+
+  // Interpretation
+  var interpretation;
+  if (score >= 90) {
+    interpretation = "Your health status is good!";
+  } else {
+    interpretation = "You might need to make some changes to improve your health.";
+  }
+
+  // Display the result
+  result.innerHTML = "Your score is: " + score + "<br>" + interpretation;
+}
+
+function updateScoreBar(score) {
+  const scorePercentage = (score / (totalQuestions * 10)) * 100;
+  document.getElementById("score-bar").style.width = scorePercentage + "%";
+}
+
+window.onload = function () {
+  const fiveMinutes = 60 * 5, // 5 minutes
+    display = document.getElementById('time');
+  startTimer(fiveMinutes, display);
+  document.getElementById("question1").style.display = "block";
+};
+
+  </script>
+</body>
+</html>

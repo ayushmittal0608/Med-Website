@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+:root{
+    --primary:#1f2e88;
+    --secondary:#2f66d4;
+    --hover: #a2d9f5;
+    --black:#333;
+    --white:#fff;
+    --light-color:#666;
+    --light-bg:#eee;
+    --border:.2rem solid rgba(0,0,0,.1);
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: var(--primary);
+    border-radius: 5rem;
+}
+
+.header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: var(--white);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+}
+
+.header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: var(--black);
+}
+
+.header .logo i{
+    color: var(--primary);
+    padding-right: .5rem;
+}
+
+.header .navbar a{
+    font-size: 1.7rem;
+    color: var(--black);
+    margin: 0 1rem;
+    text-align: center;
+}
+
+.header .navbar a:hover{
+    color: var(--primary);
+}
+
+.header .btn{
+    margin-top: 0;
+    text-align: center;
+    float: right;
+}
+
+section{
+    padding: 5rem 7%;
+}
+
+.heading{
+    font-size: 4rem;
+    text-align: center;
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 1rem 3rem;
+    border-radius: .5rem;
+    background: var(--primary);
+    cursor: pointer;
+    font-size: 1.7rem;
+    color: var(--white);
+}
+
+.btn:hover{
+    background: var(--secondary);
+}
+
+.pricing{
+    background: var(--light-bg);
+    padding-top: 10rem;
+}
+
+.pricing .btn{
+    align-items: center;
+}
+
+.pricing .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.pricing .box-container .box{
+    height: 46rem;
+    width: 30rem;
+    margin: 2rem 4rem;
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    background: var(--white);
+}
+
+.pricing .box-container .box:hover{
+    background: var(--hover);
+}
+
+.pricing .box-container .box .title{
+    margin: 3rem 0;
+    font-size: 2.2rem;
+    color: var(--black);
+    text-transform: uppercase;
+}
+
+.pricing .box-container .box .price{
+    color: var(--primary);
+    margin-bottom: 5rem;
+}
+
+.pricing .box-container .box .price .currency{
+    font-size: 4rem;
+    line-height: 3.5rem;
+    font-weight: 300;
+}
+
+.pricing .box-container .box .price .amount{
+    font-size: 5.8rem;
+    line-height: 4.5rem;
+    font-weight: 700;
+}
+
+.pricing .box-container .box .price .duration{
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: .2rem;
+}
+
+.pricing .box-container .box ul li{
+    text-align: left;
+    font-size: 1.6rem;
+    padding-left: 3.5rem;
+    margin: 2rem auto;
+    color: var(--light-color);
+    text-transform: uppercase;
+}
+
+.pricing .box-container .box ul li i{
+    padding: 0 1rem;
+    color: var(--secondary);
+}

@@ -1,0 +1,29 @@
+<div class="input-field">
+    <label for="myfile">Upload image:</label>
+    <img id="ImgPreview" style="width:5%;  border:1px solid black; height:40px;  margin-bottom:20px">
+    <input type="file" name="myfile" id="myfile" onchange="FileOnChange(this)" />
+</div>
+<div class="input-field">
+    <label for="mycv">Upload CV:</label>
+    <img id="ImgPreview" style="width:5%;  border:1px solid black; height:40px;  margin-bottom:20px">
+    <input type="file" name="mycv" id="mycv" onchange="FileOnChange(this)" />
+</div>
+
+<script>
+    function FileOnChange(p) {
+        var file = p.files[0];                                 //01
+        ImgSrc = URL.createObjectURL(file);                    //02
+        document.getElementById("ImgPreview").src = ImgSrc;    //03
+     
+        let imgRead = new FileReader();                        //04
+     
+     
+        imgRead.onload = function(e) {                         //05
+        var AllData = e.target.result;                         //06
+        var ImgData = AllData.split("base64,")[1];             //07
+        document.getElementById("ImgData").value = ImgData;    //08
+        }
+        
+        imgRead.readAsDataURL(file);                           //09
+     }
+</script>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+  <!-- Coding by CodingLab | www.codinglabweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="dashboard-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!--<title>Dashboard Sidebar Menu</title>--> 
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="images.png" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">Medisphere</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="dashboard.html">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="appointment.html">
+                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                            <span class="text nav-text">Appointment</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="notification.html">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Notifications</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="analytics.html">
+                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="cart.html">
+                            <i class='bx bx-wallet icon' ></i>
+                            <span class="text nav-text">Wallets</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <button onclick="logout()">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </button>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                
+            </div>
+        </div>
+
+    </nav>
+
+    <section class="home">
+        <div class="text">MediASSIST</div>
+        <div class="box">
+        <div class="container">
+        <div class="profile">
+            
+            <div class="details">
+                <h2>Hi! John Doe</h2>
+                <p>Welcome to your dashboard. Here, you are provided with all medical facilities at ease.</p>
+                <br>
+                
+                <h3>Your Personal Details</h3>
+                <p><strong>Age:</strong> 45</p>
+                <p><strong>Gender:</strong> Male</p>
+                <p><strong>Address:</strong> 123 Main St, City, Country</p>
+                <p><strong>Email:</strong> john.doe@example.com</p>
+                <p><strong>Phone:</strong> +1 234 567 8901</p>
+            </div>
+        </div>
+        </div>
+        
+        <div class="cld">
+            <div class="calendar">
+              <div class="header">
+                <button id="prevBtn">&lt;</button>
+                <h2 id="monthYear"></h2>
+                <button id="nextBtn">&gt;</button>
+              </div>
+              <table id="calendarTable">
+                <thead>
+                  <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                  </tr>
+                </thead>
+                <tbody id="calendarBody">
+                  <!-- Calendar dates will be populated here -->
+                </tbody>
+              </table>
+            </div>
+            <div class="selected-dates" id="selectedDates">
+              <div class="timeline-title">Today's timeline</div>
+            </div>
+            </div>
+            <div class="vital">
+                <h1>My Vital Signs</h1>
+            <div class="vital-signs">
+              <div class="sign">
+                <h3>Heart Rate</h3>
+                <img src="heart.png">
+                <p id="heartRate">72 bpm</p>
+                <button onclick="changeValue('heartRate')">Change Value</button>
+              </div>
+              
+              <div class="sign">
+                <h3>SpO2</h3>
+                <img src="sp02.webp">
+                <p id="spo2">98%</p>
+                <button onclick="changeValue('spo2')">Change Value</button>
+              </div>
+              
+              <div class="sign">
+                <h3>Temperature</h3>
+                <img src="temp.jpg">
+                <p id="temperature">98.6°F</p>
+                <button onclick="changeValue('temperature')">Change Value</button>
+              </div>
+              
+              <div class="sign">
+                <h3>Respiration Rate</h3>
+                <img src="resp.jpg">
+                <p id="respirationRate">16 breaths/min</p>
+                <button onclick="changeValue('respirationRate')">Change Value</button>
+              </div>
+              
+              <div class="sign">
+                <h3>Blood Glucose</h3><br>
+                <img src="glucose.png">
+                <p id="bloodGlucose">100 mg/dL</p>
+                <button onclick="changeValue('bloodGlucose')">Change Value</button>
+              </div>
+              
+              <div class="sign">
+                <h3>Blood Pressure</h3><br>
+                <img src="bp.png">
+                <p id="bloodPressure">120/80 mmHg</p>
+                <button onclick="changeValue('bloodPressure')">Change Value</button>
+              </div>
+            </div>
+            </div>
+            <div class="request">
+              <h2>Recent Updates</h2><br>
+            <ul id="requests-list">
+              <!-- Received requests will be dynamically added here -->
+            </ul>
+            </div>
+            </div>
+    </section>
+
+    <script>
+        const body = document.querySelector('body'),
+      sidebar = body.querySelector('nav'),
+      toggle = body.querySelector(".toggle"),
+      searchBtn = body.querySelector(".search-box"),
+      modeSwitch = body.querySelector(".toggle-switch"),
+      modeText = body.querySelector(".mode-text");
+
+
+toggle.addEventListener("click" , () =>{
+    sidebar.classList.toggle("close");
+})
+
+searchBtn.addEventListener("click" , () =>{
+    sidebar.classList.remove("close");
+})
+
+modeSwitch.addEventListener("click" , () =>{
+    body.classList.toggle("dark");
+    
+    if(body.classList.contains("dark")){
+        modeText.innerText = "Light mode";
+    }else{
+        modeText.innerText = "Dark mode";
+        
+    }
+});
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthYearElement = document.getElementById('monthYear');
+            const calendarBody = document.getElementById('calendarBody');
+            const selectedDatesElement = document.getElementById('selectedDates');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let selectedDates = [];
+          
+            let today = new Date();
+            let currentMonth = today.getMonth();
+            let currentYear = today.getFullYear();
+          
+            // Load selected dates from localStorage if available
+            if (localStorage.getItem('selectedDates')) {
+              selectedDates = JSON.parse(localStorage.getItem('selectedDates'));
+              displaySelectedDates();
+            }
+          
+            function generateCalendar(year, month) {
+              let daysInMonth = new Date(year, month + 1, 0).getDate();
+              let firstDayOfMonth = new Date(year, month, 1).getDay();
+          
+              monthYearElement.textContent = `${new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date(year, month))} ${year}`;
+          
+              calendarBody.innerHTML = '';
+          
+              let date = 1;
+              for (let i = 0; i < 6; i++) {
+                let row = document.createElement('tr');
+                for (let j = 0; j < 7; j++) {
+                  if (i === 0 && j < firstDayOfMonth) {
+                    let cell = document.createElement('td');
+                    row.appendChild(cell);
+                  } else if (date > daysInMonth) {
+                    break;
+                  } else {
+                    let cell = document.createElement('td');
+                    cell.textContent = date;
+                    cell.dataset.date = `${year}-${month + 1}-${date}`;
+                    cell.addEventListener('click', function() {
+                      if (!this.classList.contains('selected')) {
+                        this.classList.add('selected');
+                        selectedDates.push(this.dataset.date);
+                      } else {
+                        this.classList.remove('selected');
+                        selectedDates = selectedDates.filter(date => date !== this.dataset.date);
+                      }
+                      displaySelectedDates();
+                      // Save selected dates to localStorage
+                      localStorage.setItem('selectedDates', JSON.stringify(selectedDates));
+                    });
+                    row.appendChild(cell);
+                    date++;
+                  }
+                }
+                calendarBody.appendChild(row);
+              }
+            }
+          
+            function displaySelectedDates() {
+              selectedDatesElement.innerHTML = '';
+              // Add Today's timeline
+              const timelineTitle = document.createElement('div');
+              timelineTitle.textContent = "Today's timeline";
+              timelineTitle.style.fontWeight = 'bold'; // Make it bold
+              timelineTitle.style.backgroundColor = 'transparent'; // Remove background color
+              timelineTitle.style.color='#333';
+              timelineTitle.style.fontSize='20px';
+              timelineTitle.style.boxShadow='none';
+              selectedDatesElement.appendChild(timelineTitle);
+          
+              selectedDates.forEach(date => {
+                let div = document.createElement('div');
+                // Format the date string
+                const formattedDate = formatDate(date);
+                div.textContent = formattedDate;
+                selectedDatesElement.appendChild(div);
+              });
+            }
+          
+            function formatDate(dateString) {
+              const date = new Date(dateString);
+              const options = { day: 'numeric', month: 'short', year: 'numeric' };
+              const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+              return formattedDate;
+            }
+          
+            generateCalendar(currentYear, currentMonth);
+          
+            prevBtn.addEventListener('click', function() {
+              currentMonth--;
+              if (currentMonth < 0) {
+                currentYear--;
+                currentMonth = 11;
+              }
+              generateCalendar(currentYear, currentMonth);
+            });
+          
+            nextBtn.addEventListener('click', function() {
+              currentMonth++;
+              if (currentMonth > 11) {
+                currentYear++;
+                currentMonth = 0;
+              }
+              generateCalendar(currentYear, currentMonth);
+            });
+          });
+          
+    </script>
+    <script>
+        function changeValue(id) {
+            let newValue;
+            
+            switch (id) {
+              case 'heartRate':
+                newValue = Math.floor(Math.random() * (120 - 60 + 1)) + 60 + ' bpm';
+                break;
+              case 'spo2':
+                newValue = Math.floor(Math.random() * (100 - 90 + 1)) + 90 + '%';
+                break;
+              case 'temperature':
+                newValue = (Math.random() * (100 - 95) + 95).toFixed(1) + '°F';
+                break;
+              case 'respirationRate':
+                newValue = Math.floor(Math.random() * (20 - 12 + 1)) + 12 + ' breaths/min';
+                break;
+              case 'bloodGlucose':
+                newValue = Math.floor(Math.random() * (200 - 80 + 1)) + 80 + ' mg/dL';
+                break;
+              case 'bloodPressure':
+                const sys = Math.floor(Math.random() * (140 - 90 + 1)) + 90;
+                const dia = Math.floor(Math.random() * (90 - 60 + 1)) + 60;
+                newValue = sys + '/' + dia + ' mmHg';
+                break;
+            }
+            
+            document.getElementById(id).textContent = newValue;
+          }
+          
+    </script>
+    <script>
+        function logout() {
+            // Close the current window/tab
+            if (window.opener) {
+                window.opener.close();
+              } else {
+                // If there's no opener window, close the current window/tab
+                window.close();
+              }
+          }
+    </script>
+    <script src="not-script.js"></script>
+</body>
+</html>

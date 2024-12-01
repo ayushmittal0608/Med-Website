@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediASSIST</title>
+    <link rel="stylesheet" href="patient-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Add any additional styles here */
+        .patient-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .patient-item img {
+            width: 50px; /* Adjust image width as needed */
+            height: 50px; /* Adjust image height as needed */
+            margin-right: 10px;
+            border-radius: 50%; /* Makes the image round */
+        }
+
+        .patient-item .patient-details {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="images.png" alt="">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">Medisphere</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="dashboard.html">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="patient.html">
+                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                            <span class="text nav-text">Patients</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="appoint.html">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Appointment</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <span class="text nav-text">Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-heart icon' ></i>
+                            <span class="text nav-text">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <button onclick="logout()">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </button>
+                </li>
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home">
+        <div class="text">MediASSIST</div><br><br>
+        <button id="add-patient-btn">Add New Patient</button>
+        <div id="add-patient-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Add New Patient</h2>
+                <form id="add-patient-form">
+                    <label for="patient-name">Name:</label>
+                    <input type="text" id="patient-name" name="patient-name" required>
+                    <label for="patient-age">Age:</label>
+                    <input type="number" id="patient-age" name="patient-age" required>
+                    <label for="patient-gender">Gender:</label>
+                    <select id="patient-gender" name="patient-gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <label for="patient-condition">Condition:</label>
+                    <textarea id="patient-condition" name="patient-condition" required></textarea>
+                    <button type="submit">Add Patient</button>
+                </form>
+            </div>
+        </div>
+        <div id="patient-list" class="patient-list">
+            <!-- Patient details will be added here dynamically -->
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.querySelector('body');
+            const sidebar = body.querySelector('nav');
+            const toggle = body.querySelector(".toggle");
+            const searchBtn = body.querySelector(".search-box");
+            const modeSwitch = body.querySelector(".toggle-switch");
+            const modeText = body.querySelector(".mode-text");
+            const modal = document.getElementById('add-patient-modal');
+            const addPatientBtn = document.getElementById('add-patient-btn');
+            const closeBtn = document.querySelector('.close-btn');
+            const addPatientForm = document.getElementById('add-patient-form');
+            const patientList = document.getElementById('patient-list');
+
+            toggle.addEventListener("click", () => {
+                sidebar.classList.toggle("close");
+            });
+
+            searchBtn.addEventListener("click", () => {
+                sidebar.classList.remove("close");
+            });
+
+            modeSwitch.addEventListener("click", () => {
+                body.classList.toggle("dark");
+                if (body.classList.contains("dark")) {
+                    modeText.innerText = "Light mode";
+                } else {
+                    modeText.innerText = "Dark mode";
+                }
+            });
+
+            addPatientBtn.addEventListener('click', () => {
+                modal.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            addPatientForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                // Retrieve form field values
+                const name = document.getElementById('patient-name').value;
+                const age = document.getElementById('patient-age').value;
+                const gender = document.getElementById('patient-gender').value;
+                const condition = document.getElementById('patient-condition').value;
+
+                // Log values to console for debugging
+                console.log({ name, age, gender, condition });
+
+                // Example: Create patient item and append to patient list
+                const patientItem = document.createElement('div');
+                patientItem.classList.add('patient-item');
+                patientItem.innerHTML = `
+                    <img src="user.png" alt="Patient Image">
+                    <div class="patient-details">
+                        <h3>${name}</h3>
+                        <p>Age: ${age}</p>
+                        <p>Gender: ${gender}</p>
+                        <p>Condition: ${condition}</p>
+                    </div>
+                `;
+
+                patientList.appendChild(patientItem);
+
+                // Save patient data to localStorage
+                savePatientToLocalStorage({ name, age, gender, condition });
+            });
+
+            // Load patients from localStorage when page loads
+            loadPatientsFromLocalStorage();
+
+            // Function to save patient data to localStorage
+            function savePatientToLocalStorage(patient) {
+                let patients = JSON.parse(localStorage.getItem('patients')) || [];
+                patients.push(patient);
+                localStorage.setItem('patients', JSON.stringify(patients));
+            }
+
+            // Function to load patients from localStorage
+            function loadPatientsFromLocalStorage() {
+                const patients = JSON.parse(localStorage.getItem('patients')) || [];
+
+                patients.forEach(patient => {
+                    const patientItem = document.createElement('div');
+                    patientItem.classList.add('patient-item');
+                    patientItem.innerHTML = `
+                        <img src="user.png" alt="Patient Image">
+                        <div class="patient-details">
+                            <h3>${patient.name}</h3>
+                            <p>Age: ${patient.age}</p>
+                            <p>Gender: ${patient.gender}</p>
+                            <p>Condition: ${patient.condition}</p>
+                        </div>
+                    `;
+                    patientList.appendChild(patientItem);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

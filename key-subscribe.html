@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glow Buttons</title>
+  <link rel="stylesheet" href="stylesheets/key-style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>Login To Dashboard</h1>
+    <form>
+        <input type="text" name="key" placeholder="Enter Key" id="key">
+        <input type="password" name="password" placeholder="Enter Password" id="password">
+        <button type="button" onclick="openPage()">Open Dashboard</button>
+    </form>
+    <p>____________________________________</p>
+    <p>To access dashboard, click on the button below and<br> choose the required subscription</p>
+  <button class="glow-button" onclick="window.location.href='http://localhost:3137/'">Subscription Page</button>
+  </div>
+  <script>
+    function openPage() {
+      // Get the input values
+      var key = document.getElementById("key").value;
+      var password = document.getElementById("password").value;
+      
+      // Check if the input fields are not empty
+      
+      // Check if the key and password are correct
+      if (key === "100056" && password === "john_basic1") {
+          // Example: Mapping input to webpage URLs
+          window.location.href='basic/patient.html';
+      } 
+      if (key === "200056" && password === "john_standard2") {
+        // Example: Mapping input to webpage URLs
+        window.location.href='standard/patient.html';
+    } 
+    if (key === "400056" && password === "john_premium4") {
+      // Example: Mapping input to webpage URLs
+      window.location.href='premium/patient.html';
+  } 
+      else {
+          alert("Incorrect key or password.");
+      }
+  }
+  </script>
+</body>
+</html>

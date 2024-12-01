@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Subscription page</title>
+        <link rel="stylesheet" href="stylesheets/subscribe-style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <a href="#" class="logo"> <i class="fa-solid fa-stethoscope"></i> medisphere </a>
+            <nav class="navbar">
+            </nav>
+            <button class="btn" onclick="window.location.href='register-as-doctor.html'"> Register as a doctor</button>
+    
+        </header><br><br><br><br>
+        <section class="pricing" id="pricing">
+
+            <h1 class="heading">pricing plan</h1>
+    
+            <div class="box-container">
+    
+                <div class="box">
+                    <h3 class="title">basic</h3>
+                    <div class="price">
+                        <span class="currency">₹</span>
+                        <span class="amount">1000</span>
+                        <span class="duration"> /year</span>
+                    </div>
+                    <ul>
+                        <li> <i class="fas fa-check"></i> MediAssist</li>
+                        <li> <i class="fas fa-check"></i> Regular Dosage Check</li>
+                        <li> <i class="fas fa-check"></i> Fitness Test</li>
+                        <li> <i class="fas fa-check"></i> Appointment Scheduling</li>
+                    </ul>
+                    <form class="pay-form">
+                        <input type="hidden" name="name" value="Basic">
+				        <input type="hidden" name="amount" value="1000">
+				        <input type="hidden" name="description" value="Basic Buying">
+                        <input type="submit" value="Pay Now" class="btn">
+                    </form>
+                </div>
+    
+                <div class="box">
+                    <h3 class="title">standard</h3>
+                    <div class="price">
+                        <span class="currency">₹</span>
+                        <span class="amount">2000</span>
+                        <span class="duration"> /year</span>
+                    </div>
+                    <ul>
+                        <li> <i class="fas fa-check"></i> MediAssist</li>
+                        <li> <i class="fas fa-check"></i> Regular Dosage Check</li>
+                        <li> <i class="fas fa-check"></i> Fitness test</li>
+                        <li> <i class="fas fa-check"></i> free medical check-up</li>
+                    </ul>
+                    <form class="pay-form">
+                        <input type="hidden" name="name" value="Standard">
+				        <input type="hidden" name="amount" value="2000">
+				        <input type="hidden" name="description" value="Standard Buying">
+                        <input type="submit" value="Pay Now" class="btn">
+                    </form>
+                </div>
+    
+                <div class="box">
+                    <h3 class="title">premium</h3>
+                    <div class="price">
+                        <span class="currency">₹</span>
+                        <span class="amount">4000</span>
+                        <span class="duration"> /year</span>
+                    </div>
+                    <ul>
+                        <li> <i class="fas fa-check"></i> MediAssist</li>
+                        <li> <i class="fas fa-check"></i> regular dosage check</li>
+                        <li> <i class="fas fa-check"></i> free medical check-up</li>
+                        <li> <i class="fas fa-check"></i> med-Kit</li>
+                    </ul>
+                    <form class="pay-form">
+                        <input type="hidden" name="name" value="Premium">
+				        <input type="hidden" name="amount" value="4000">
+				        <input type="hidden" name="description" value="Premium Buying">
+                        <input type="submit" value="Pay Now" class="btn">
+                    </form>
+                </div>
+    
+            </div>
+        </section>
+    </body>
+</html>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+$(document).ready(function(){
+	$('.pay-form').submit(function(e){
+		e.preventDefault();
+
+		var formData = $(this).serialize();
+
+		$.ajax({
+			url:"/createOrder",
+			type:"POST",
+			data: formData,
+			success:function(res){
+				if(res.success){
+					var options = {
+						"key": ""+res.key_id+"",
+						"amount": ""+res.amount+"",
+						"currency": "INR",
+						"name": ""+res.product_name+"",
+						"description": ""+res.description+"",
+						"image": "https://dummyimage.com/600x400/000/fff",
+						"order_id": ""+res.order_id+"",
+						"handler": function (response){
+							alert("Payment Succeeded");
+							window.open("success.ejs","_self")
+						},
+						"prefill": {
+							"contact":""+res.contact+"",
+							"name": ""+res.name+"",
+							"email": ""+res.email+""
+						},
+						"notes" : {
+							"description":""+res.description+""
+						},
+						"theme": {
+							"color": "#2300a3"
+						}
+					};
+					var razorpayObject = new Razorpay(options);
+					razorpayObject.on('payment.failed', function (response){
+							alert("Payment Failed");
+					});
+					razorpayObject.open();
+				}
+				else{
+					alert(res.msg);
+				}
+			}
+		})
+
+	});
+});
+
+</script>

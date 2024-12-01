@@ -1,0 +1,523 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #695CFE;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body{
+    min-height: 100vh;
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+::selection{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+body.dark{
+    --body-color: #454547;
+    --sidebar-color: #2a2836;
+    --primary-color: #131415;
+    --primary-color-light: #1b1d1f;
+    --toggle-color: #fff;
+    --text-color: #ccc;
+}
+
+/* ===== Sidebar ===== */
+ .sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background: var(--sidebar-color);
+    transition: var(--tran-05);
+    z-index: 100;  
+}
+.sidebar.close{
+    width: 88px;
+}
+
+/* ===== Reusable code - Here ===== */
+.sidebar li{
+    height: 50px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.sidebar header .image,
+.sidebar .icon{
+    min-width: 60px;
+    border-radius: 6px;
+}
+
+.sidebar .icon{
+    min-width: 60px;
+    border-radius: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.sidebar .text,
+.sidebar .icon{
+    color: var(--text-color);
+    transition: var(--tran-03);
+}
+
+.sidebar .text{
+    font-size: 17px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 1;
+}
+.sidebar.close .text{
+    opacity: 0;
+}
+/* =========================== */
+
+.sidebar header{
+    position: relative;
+}
+
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+}
+.sidebar header .logo-text{
+    display: flex;
+    flex-direction: column;
+}
+header .image-text .name {
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+header .image-text .profession{
+    font-size: 16px;
+    margin-top: -2px;
+    display: block;
+}
+
+.sidebar header .image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar header .image img{
+    width: 40px;
+    border-radius: 6px;
+}
+
+.sidebar header .toggle{
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%) rotate(180deg);
+    height: 25px;
+    width: 25px;
+    background-color: var(--primary-color);
+    color: var(--sidebar-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    transition: var(--tran-05);
+}
+
+body.dark .sidebar header .toggle{
+    color: var(--text-color);
+}
+
+.sidebar.close .toggle{
+    transform: translateY(-50%) rotate(0deg);
+}
+
+.sidebar .menu{
+    margin-top: 40px;
+}
+
+.sidebar li.search-box{
+    border-radius: 6px;
+    background-color: var(--primary-color-light);
+    cursor: pointer;
+    transition: var(--tran-05);
+}
+
+.sidebar li.search-box input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: var(--primary-color-light);
+    color: var(--text-color);
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 500;
+    transition: var(--tran-05);
+}
+.sidebar li a{
+    list-style: none;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--tran-03);
+}
+
+.sidebar li a:hover{
+    background-color: var(--primary-color);
+}
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--sidebar-color);
+}
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text{
+    color: var(--text-color);
+}
+
+.sidebar .menu-bar{
+    height: calc(100% - 55px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+.menu-bar::-webkit-scrollbar{
+    display: none;
+}
+.sidebar .menu-bar .mode{
+    border-radius: 6px;
+    background-color: var(--primary-color-light);
+    position: relative;
+    transition: var(--tran-05);
+}
+
+.menu-bar .mode .sun-moon{
+    height: 50px;
+    width: 60px;
+}
+
+.mode .sun-moon i{
+    position: absolute;
+}
+.mode .sun-moon i.sun{
+    opacity: 0;
+}
+body.dark .mode .sun-moon i.sun{
+    opacity: 1;
+}
+body.dark .mode .sun-moon i.moon{
+    opacity: 0;
+}
+
+.menu-bar .bottom-content .toggle-switch{
+    position: absolute;
+    right: 0;
+    height: 100%;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.toggle-switch .switch{
+    position: relative;
+    height: 22px;
+    width: 40px;
+    border-radius: 25px;
+    background-color: var(--toggle-color);
+    transition: var(--tran-05);
+}
+
+.switch::before{
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background-color: var(--sidebar-color);
+    transition: var(--tran-04);
+}
+
+body.dark .switch::before{
+    left: 20px;
+}
+
+.home{
+    position: absolute;
+    top: 0;
+    top: 0;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+.home .abc{
+    display:flex;
+    justify-content: space-between;
+}
+
+.home .container {
+    max-width: 1000px;
+    width: 500px;
+    margin: 1rem auto;
+    padding: 30px;
+}
+
+.home .container .part1{
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 1rem auto;
+}
+
+.home .container .part2{
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 1rem auto;
+} 
+
+.home h1 {
+    text-align: center;
+    color: #333;
+}
+.home label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.home input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.home button {
+    background-color: #4c4faf;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.home button:hover {
+    background-color: #454ea0;
+}
+.home .result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.home .text{
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 12px 60px;
+}
+
+.sidebar.close ~ .home{
+    left: 78px;
+    height: 100vh;
+    width: calc(100% - 78px);
+}
+body.dark .home .text{
+    color: var(--text-color);
+}
+  
+.home .app { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    width: 700px; 
+    margin: auto; 
+    padding: 30px; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} 
+
+.home .app h1 {
+    text-align: center;
+    color: #333;
+}
+  
+.home .app .inputs { 
+    width: 100%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 20px; 
+    height: fit-content; 
+} 
+  
+.home .app .inputs>div { 
+    height: 100%; 
+    display: flex; 
+    justify-content: space-between; 
+    flex-direction: column; 
+} 
+  
+.home .app label { 
+    font-size: 0.9rem; 
+} 
+  
+.home .app input, 
+.home .app label { 
+    display: block; 
+} 
+  
+.home .app input { 
+    margin-top: 8px; 
+    margin-bottom: 5px; 
+    padding: 10px; 
+    font-size: large; 
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0); 
+    border-radius: 5px; 
+    width: 100%; 
+} 
+  
+.home .app input:focus-visible { 
+    outline: 2px solid #fffbfb; 
+} 
+  
+.home .app input::-webkit-outer-spin-button, 
+.home .app input::-webkit-inner-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+} 
+  
+.home .app button{ display: block; cursor: pointer; border: none; } 
+  
+.home .app #submit { 
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    background-image: linear-gradient(to right, #2d42b9, #2d2d8c); 
+    font-size: 1.3rem; 
+    border-radius: 5px; 
+    color: white; 
+    font-weight: bold; 
+    transition: scale 0.3s ease-in-out; 
+} 
+  
+.home .app #editSection{ 
+    width: 100%; 
+    display: flex; 
+    gap: 25px; 
+    justify-content: space-between; 
+} 
+  
+.home .app #editSection > button { 
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    font-size: 1.3rem; 
+    border-radius: 5px; 
+    color: white; 
+    font-weight: bold; 
+    transition: scale 0.3s ease-in-out; 
+} 
+  
+.home .app #updateEntry { background-image:  
+      linear-gradient(to right, #5648ec, #5c6ef6); } 
+  
+.home .app #cancelEdit{ background-color: #4d44ef; } 
+  
+.home .app #submit:hover, #updateEntry:hover, #cancelEdit:hover { scale: 1.02; } 
+  
+.home .app .hidden{ display: none !important; } 
+  
+.home .app .edit, .delete{ 
+    margin: 0 auto; 
+    padding: 5px 10px; 
+    font-size: 1.1rem; 
+    border-radius: 5px; 
+    background-color: rgb(13, 13, 61); 
+    color: rgb(97, 60, 171); 
+    border: 1px solid rgb(0, 0, 0); 
+} 
+  
+.home .app .edit:hover, .delete:hover{ 
+    background-color: #000000; 
+} 
+  
+.home .app table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    position: relative; 
+    overflow: hidden; 
+    background-color: rgb(151, 140, 140);
+    color:white
+} 
+  
+.home .app th, 
+.home .app td { 
+    text-align: center; 
+    padding: 10px; 
+    border: 0; 
+} 
+.home .app tr:nth-child(even) { 
+    background-color: #fdfdfd; 
+    color:#0a0a0a;
+} 
+  
+.home .app tr:nth-child(odd) { 
+    background-color: #ffffff; 
+    color:#0a0a0a;
+} 
+  
+.home .app th { 
+    font-size: 0.9rem; 
+    background-color: rgb(115, 117, 241); 
+} 
+  
+.home .app tbody > tr:hover{ 
+    background-color: #b0b0b0; 
+    color: rgb(0, 0, 0); 
+} 

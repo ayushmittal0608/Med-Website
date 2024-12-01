@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration form for doctor</title>
+        <link rel="stylesheet" href="stylesheets/doctor-register-style.css">
+        <script src="index.js"></script>
+        <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "7mhWJu3DSC2kDsvRj",
+      });
+   })();
+</script>
+    </head>
+    <body>
+        <div class="ocean">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <div class="glass">
+        <h1>Doctor Registration Form<hr></h1>
+        <div class="container">
+            <div class="forms-container">
+            <form action="https://script.google.com/macros/s/AKfycbw-XVaMo0iT_w2X4GLVT5JqB_9gyx3aQ9YQ1K_Wn4pOmJ4PT11JTK8UhEgC3o-Fn-rw/exec" method="post">
+            <div class="input-field">
+            First Name: <input type="text" name="first-name" placeholder="First Name" id="first-name" />
+            Last Name: <input type="text" name="last-name" placeholder="Last Name" id="last-name" />
+            </div>
+            <div class="input-field">
+            Email ID: <input type="email" name="email" placeholder="Email ID" id="email" />
+            Phone No: <input type="number" name="phone-no" placeholder="Phone Number" id="number" />
+            </div>
+            <div class="input-field">
+            Address: <input type="description" name="address" placeholder="Home Address" id="address" />
+            Medical Degree: <input type="text" name="degree" placeholder="Medical Degree" id="degree" />
+            </div>
+            <div class="input-field">
+            Select speciality:
+            <select name="speciality" id="speciality">
+                <option value="select">Select option</option>
+                <option value="Cardiology">Cardiology</option>
+                <option value="Dermatology">Dermatology</option>
+                <option value="Endocrinology">Endocrinology</option>
+                <option value="Gastroenterology">Gastroenterology</option>
+                <option value="Gastroenterology">Gastroenterology</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Oncology">Oncology</option>
+                <option value="Pediatrics">Pediatrics</option>
+                <option value="Psychiatry">Psychiatry</option>
+                <option value="Surgery">Surgery</option>
+                <option value="Others">Others</option>
+            </select>
+            Available:
+            <input type="date" id="available" name="available">
+            </div>
+            <div class="input-field">
+            <p id="radio" name="radio">Are you board certified?
+            <input type="radio" id="yes" name="yes" value="yes">
+            <label for="yes">Yes</label>
+            <input type="radio" id="no" name="no" value="no">
+            <label for="no">No</label></p>
+            </div>
+            <input type="submit" class="btn" value="Submit info">
+        </form>
+        </div>
+        </div>
+    </body>
+    
+</html>

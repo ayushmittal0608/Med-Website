@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+  <!-- Coding by CodingLab | www.codinglabweb.com -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="notification-style.css">
+    
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!--<title>Dashboard Sidebar Menu</title>--> 
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="images.png" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">Medisphere</span>
+                    <span class="profession">Medical Company</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="dashboard.html">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="appointment.html">
+                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                            <span class="text nav-text">Appointment</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="notification.html">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Notifications</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="analytics.html">
+                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="test.html">
+                            <i class='bx bx-heart icon' ></i>
+                            <span class="text nav-text">Fitness Test</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="cart.html">
+                            <i class='bx bx-wallet icon' ></i>
+                            <span class="text nav-text">Wallets</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <button onclick="logout()">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </button>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                
+            </div>
+        </div>
+
+    </nav>
+
+    <section class="home">
+        <div class="text">MediASSIST</div><br><br>
+        <div class="notification">
+    <div class="app-request">
+    <h2>Appointment Requests</h2>
+    <ul id="requests-list">
+    </ul>
+    <br><br>
+    
+    </div>
+    <br><br>
+    <div class="not-list">
+        
+    <h2>Notifications</h2>
+    
+    <ul id="notifications-list">
+    </ul>
+    <ul id="notification-list">
+        <li>Your basic subscription dashboard has been ready to be used.</li>
+        <li>New tools have been added to your subscription page.</li>
+    </ul>
+    <br><br>
+    <button id="clear-storage-btn">Clear All</button>
+    </div>
+</div>
+    </section>
+
+    <script>
+        const body = document.querySelector('body'),
+      sidebar = body.querySelector('nav'),
+      toggle = body.querySelector(".toggle"),
+      searchBtn = body.querySelector(".search-box"),
+      modeSwitch = body.querySelector(".toggle-switch"),
+      modeText = body.querySelector(".mode-text");
+
+
+toggle.addEventListener("click" , () =>{
+    sidebar.classList.toggle("close");
+})
+
+searchBtn.addEventListener("click" , () =>{
+    sidebar.classList.remove("close");
+})
+
+modeSwitch.addEventListener("click" , () =>{
+    body.classList.toggle("dark");
+    
+    if(body.classList.contains("dark")){
+        modeText.innerText = "Light mode";
+    }else{
+        modeText.innerText = "Dark mode";
+        
+    }
+});
+    </script>
+    <script>
+        function logout() {
+            // Close the current window/tab
+            if (window.opener) {
+                window.opener.close();
+              } else {
+                // If there's no opener window, close the current window/tab
+                window.close();
+              }
+          }
+    </script>
+    <script>
+        // Function to display requests and notifications
+        function displayRequestsAndNotifications() {
+            const requests = JSON.parse(localStorage.getItem('requests')) || [];
+            const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+
+            const requestsList = document.getElementById('requests-list');
+            const notificationsList = document.getElementById('notifications-list');
+
+            // Clear previous lists
+            requestsList.innerHTML = '';
+            notificationsList.innerHTML = '';
+
+            // Display appointment requests
+            requests.forEach(request => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Appointment request received for ${request.doctor} at ${request.timestamp}`;
+                requestsList.appendChild(listItem);
+            });
+
+            // Display notifications
+            notifications.forEach(notification => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${notification.message} at ${notification.timestamp}`;
+                notificationsList.appendChild(listItem);
+            });
+
+            const requestApproved = localStorage.getItem('requestApproved');
+    if (requestApproved === 'true') {
+        const listItem = document.createElement('li');
+        listItem.textContent = 'Appointment request has been approved.';
+        notificationsList.appendChild(listItem);
+
+        // Clear the flag
+        localStorage.removeItem('requestApproved');
+    }
+        }
+
+        // Display requests and notifications when the page loads
+        window.addEventListener('load', displayRequestsAndNotifications);
+    </script>
+    <script>
+        // Function to clear local storage
+        function clearLocalStorage() {
+            localStorage.clear();
+            alert('Local storage has been cleared.');
+        }
+
+        // Event listener for the clear storage button
+        document.getElementById('clear-storage-btn').addEventListener('click', clearLocalStorage);
+    </script>
+</body>
+</html>
