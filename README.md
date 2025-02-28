@@ -1,0 +1,1 @@
+Designed an intuitive platform for managing appointment bookings seamlessly, leading to over 300 patients reporting easier access to healthcare services while ensuring compliance with prescribed medication schedules via automated alerts.
