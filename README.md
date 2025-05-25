@@ -14,13 +14,16 @@ Designed an intuitive platform for managing appointment bookings seamlessly, lea
 - HTML5
 - CSS3
 - JavaScript
+- Node.js
+- MongoDB
+- Express.js
 
 ## Installation and setup
--git clone https://github.com/ayushmittal0608/Med-Website.git
--npm start
+- git clone https://github.com/ayushmittal0608/Med-Website.git
+- npm start
 Open https://localhost:9000
 Inside new terminal,
--node razorpay.js
+- node razorpay.js
 Inside const db in app.js, add your own API_KEY for mongoDB.
 configure env variables and add your own secret key.
 Inside public, in .env, add your own razorpay API and secret key.
