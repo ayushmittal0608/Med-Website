@@ -4,11 +4,4 @@ services:
    env: node
    plan: free
    buildCommand: npm install
-   startCommand: npm start
-
- - type: worker
-   name: medisphere-payment-worker
-   env: node
-   plan: free
-   buildCommand: npm install
-   startCommand: node public/razorpay.js
+   startCommand: npm start:all
