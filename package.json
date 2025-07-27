@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
+    "start:all": "concurrently \"npm start\" \"cd pp && node razorpay.js\""
   },
   "keywords": [],
   "author": "",
@@ -26,5 +27,8 @@
     "nodemon": "^3.1.7",
     "paytm-pg-node-sdk": "^1.0.4",
     "stripe": "^14.24.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }
