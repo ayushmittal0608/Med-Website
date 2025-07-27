@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
 body {
-  font-family: 'Poppins', sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
@@ -19,6 +18,8 @@ h1{
 p{
   text-align: center;
 }
+
+
 
 .login-container {
   background-color: #fff;
@@ -50,6 +51,18 @@ p{
 .login-container input[type="text"]::placeholder,
 .login-container input[type="password"]::placeholder {
   color: #aaa;
+}
+
+.form-button {
+  background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
 }
 
 .glow-button {

@@ -10,10 +10,14 @@ const port=process.env.PORT || 9000;
 
 require('dotenv').config({ path: './config.env'});
 
-const DB='mongodb+srv://mittalayush2003:7mKitybpippNuZux@cluster0.jrkwykm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const DB='mongodb+srv://mittalayush2003:97pzGonKMiTcLuGp@cluster0.hofiztw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 app.use('/assets', express.static('assets'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/basic', express.static(path.join(__dirname, 'pp/basic/public')));
+app.use('/standard', express.static(path.join(__dirname, 'pp/standard/public')));
+app.use('/premium', express.static(path.join(__dirname, 'pp/premium/public')));
+
 
 const User=require('./models/UserSchema');
 const { json }=require("express");
@@ -34,6 +38,18 @@ app.get("/", (req, res)=>{
 
 app.get("/register", (req, res)=>{
     res.sendFile(__dirname+"/register.html")
+});
+
+app.get("/basic", (req, res)=>{
+    res.sendFile(__dirname+"/pp/basic/dashboard.html")
+});
+
+app.get("/standard", (req, res)=>{
+    res.sendFile(__dirname+"/pp/standard/dashboard.html")
+});
+
+app.get("/premium", (req, res)=>{
+    res.sendFile(__dirname+"/pp/premium/dashboard.html")
 });
 
 app.post("/register", async(req, res)=>{
@@ -58,29 +74,37 @@ app.get("/login", (req, res)=>{
     res.sendFile(__dirname+"/login.html")
 });
 
+app.get("/key-subscribe", (req, res) => {
+    res.sendFile(__dirname + "/key-subscribe.html");
+});
+
 //login check
-app.post("/login", async(req, res)=>{
-    try{
-        const username=req.body.username;
-        const password=req.body.password;
+app.post("/login", async (req, res) => {
+    try {
+        const { username, password } = req.body;
         console.log(password);
 
-        const userName=await User.findOne({ username: username });
-        console.log(userName.password);
-        const isMatch=await bcrypt.compare(password, userName.password);
-        console.log(isMatch);
+        const user = await User.findOne({ username: username });
+        if (!user) {
+            console.log("User not found");
+            return res.status(400).send("User not found");
+        }
 
-        if(isMatch){
-            res.sendFile(__dirname+'/key-subscribe.html');
+        const isMatch = await bcrypt.compare(password, user.password);
+        console.log("Password match:", isMatch);
+
+        if (isMatch) {
+            res.redirect('/key-subscribe');
+        } else {
+            console.log("Incorrect password");
+            res.status(401).send("Invalid credentials");
         }
-        else{
-            console.log('password is not matching');
-            res.redirect('/register');
-        }
-    } catch(error){
-        res.status(400).send("invalid username");
+    } catch (error) {
+        console.error("Login error:", error);
+        res.status(400).send("Bad Request");
     }
-})
+});
+
 
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);

@@ -113,7 +113,7 @@ $(document).ready(function(){
 						"order_id": ""+res.order_id+"",
 						"handler": function (response){
 							alert("Payment Succeeded");
-							window.open("success.ejs","_self")
+							window.location.href='/success';
 						},
 						"prefill": {
 							"contact":""+res.contact+"",

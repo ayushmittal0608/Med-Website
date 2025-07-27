@@ -113,7 +113,15 @@ $(document).ready(function(){
 						"order_id": ""+res.order_id+"",
 						"handler": function (response){
 							alert("Payment Succeeded");
-							window.open("success.ejs","_self")
+							if (res.product_name.toLowerCase() === "basic") {
+                                window.location.href = "/success-basic";
+                            } else if (res.product_name.toLowerCase() === "standard") {
+                                window.location.href = "/success-standard";
+                            } else if (res.product_name.toLowerCase() === "premium") {
+                                window.location.href = "/success-premium";
+                            } else {
+                                window.location.href = "/success"; // fallback
+                            }
 						},
 						"prefill": {
 							"contact":""+res.contact+"",

@@ -42,7 +42,7 @@ const createOrder = async(req,res)=>{
                         name: "Ayush Mittal",
                         email: "ayushmittal0608@gmail.com"
                     });
-                    //res.sendFile('success.ejs');
+                    
                 }
                 else{
                     res.status(400).send({success:false,msg:'Something went wrong!'});
