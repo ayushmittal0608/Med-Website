@@ -1,0 +1,33 @@
+name: Medisphere
+
+on: [push]
+
+jobs:
+  run-app:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run backend and payment script
+      run: |
+          npm install concurrently
+          npx concurrently "node app.js" "cd pp && node razorpay.js"
+
+
+
+
+
+
+
+
+
+    
