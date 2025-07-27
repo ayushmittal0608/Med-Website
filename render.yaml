@@ -1,22 +1,22 @@
 services:
  - type: web
-    name: medisphere-web
-    env: node
-    plan: free
-    buildCommand: npm install
-    startCommand: npm start
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: 9000
+   name: medisphere-web
+   env: node
+   plan: free
+   buildCommand: npm install
+   startCommand: npm start
+   envVars:
+    - key: NODE_ENV
+      value: production
+    - key: PORT
+      value: 9000
 
-  - type: worker
-    name: medisphere-payment-worker
-    env: node
-    plan: free
-    buildCommand: npm install
-    startCommand: node public/payment.js
-    envVars:
-      - key: NODE_ENV
-        value: production
+ - type: worker
+   name: medisphere-payment-worker
+   env: node
+   plan: free
+   buildCommand: npm install
+   startCommand: node public/payment.js
+   envVars:
+    - key: NODE_ENV
+      value: production
